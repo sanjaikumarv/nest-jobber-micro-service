@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../generated/prisma/client';
-import { softDeleteExtension } from './soft-delete.extension';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
@@ -19,7 +18,6 @@ export class PrismaService extends PrismaClient {
     super({ adapter });
 
     // `$extends` returns a new client instead of mutating `this`, and proxies unknown members — so the hooks below survive.
-    return this.$extends(softDeleteExtension) as unknown as PrismaService;
   }
 
   async onModuleInit() {

@@ -13,5 +13,7 @@ export class UsersResolver {
   }
 
   @Query(() => [User], { name: 'users' })
-  async getUsers() {}
+  async getUsers() {
+    return this.userService.getUsers();
+  }
 }

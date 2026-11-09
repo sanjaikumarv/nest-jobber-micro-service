@@ -13,4 +13,7 @@ export class UsersService {
       },
     });
   }
+  async getUsers() {
+    return this.userDbService.findMany();
+  }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
-import { UserUpdateInput } from '../../generated/prisma/models';
 
 @Injectable()
 export class UserDbService {
@@ -57,7 +56,7 @@ export class UserDbService {
 
   // Get all users
   async findMany<T extends Prisma.UserFindManyArgs>(
-    query: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>,
+    query?: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>,
   ) {
     return await this.prisma.user.findMany(query);
   }
