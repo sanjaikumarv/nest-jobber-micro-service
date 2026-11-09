@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '../generated/prisma/client.js';
-import { softDeleteExtension } from './soft-delete.extension.js';
+import { PrismaClient } from '../generated/prisma/client';
+import { softDeleteExtension } from './soft-delete.extension';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
   constructor() {
+    const connectionString = process.env.AUTH_DATABASE_URL;
+    if (!connectionString) {
+      throw new Error(
+        'Database connection string not found. Please set AUTH_DATABASE_URL or DATABASE_URL in your .env file.',
+      );
+    }
+
     const adapter = new PrismaPg({
-      connectionString: process.env.DATABASE_URL as string,
+      connectionString,
     });
     super({ adapter });
 

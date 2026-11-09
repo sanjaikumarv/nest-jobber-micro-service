@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
@@ -18,10 +18,13 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": [
-      "vitest/globals",
-      "node"
-    ]
+    "types": ["vitest/globals", "node"],
+    "paths": {
+      "@app/libs/nestjs": ["./libs/libs/nestjs/src/index.ts"],
+      "@app/libs/nestjs/*": ["./libs/libs/nestjs/src/*"],
+      "@app/nestjs": ["./libs/nestjs/src/index.ts"],
+      "@app/nestjs/*": ["./libs/nestjs/src/*"]
+    }
   },
   "files": [],
   "references": [

@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { JobberAuthService } from './jobber-auth.service.js';
+import { JobberAuthService } from './jobber-auth.service';
 
 @Controller()
 export class JobberAuthController {
