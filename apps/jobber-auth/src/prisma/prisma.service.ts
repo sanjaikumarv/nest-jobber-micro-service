@@ -5,10 +5,10 @@ import { PrismaClient } from '../generated/prisma/client';
 @Injectable()
 export class PrismaService extends PrismaClient {
   constructor() {
-    const connectionString = process.env.AUTH_DATABASE_URL;
+    const connectionString = process.env.DATABASE_URL;
     if (!connectionString) {
       throw new Error(
-        'Database connection string not found. Please set AUTH_DATABASE_URL or DATABASE_URL in your .env file.',
+        'Database connection string not found. Please set DATABASE_URL or DATABASE_URL in your .env file.',
       );
     }
 

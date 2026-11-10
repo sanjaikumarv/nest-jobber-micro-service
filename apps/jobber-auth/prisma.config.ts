@@ -9,6 +9,6 @@ export default defineConfig({
   },
 
   datasource: {
-    url: env('AUTH_DATABASE_URL'),
+    url: env('DATABASE_URL'),
   },
 });

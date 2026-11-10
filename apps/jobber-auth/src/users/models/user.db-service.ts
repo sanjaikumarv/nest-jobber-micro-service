@@ -11,7 +11,7 @@ export class UserDbService {
   async findUnique<T extends Prisma.UserFindUniqueArgs>(
     query: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>,
   ) {
-    return this.prisma.user.findUnique(query);
+    return this.prisma.user.findUniqueOrThrow(query);
   }
   async findFirst<T extends Prisma.UserFindFirstArgs>(
     query: Prisma.SelectSubset<T, Prisma.UserFindFirstArgs>,
