@@ -1,12 +1,14 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
-import { JobberAuthModule } from './jobber-auth.module';
+import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(JobberAuthModule);
+  const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  await app.listen(process.env.port ?? 3000);
+  const port = app.get(ConfigService).getOrThrow<number>('AUTH_PORT');
+  await app.listen(port);
 }
 await bootstrap();
