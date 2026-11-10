@@ -9,7 +9,6 @@
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
-    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "generate:auth:prisma": "prisma generate --schema ./apps/jobber-auth/prisma/schema.prisma",
@@ -18,12 +17,17 @@
     "generate:all": "pnpm generate:auth:prisma",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/jobber-auth/main",
-    "lint": "oxlint --type-aware apps/ libs/",
-    "test": "vitest run",
+    "lint": "eslint \"{apps,libs}/**/*.ts\"",
+    "lint:fix": "eslint \"{apps,libs}/**/*.ts\" --fix",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "format:check": "prettier --check \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "lint:staged": "lint-staged",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
-    "test:e2e": "vitest run --config ./vitest.config.e2e.ts"
+    "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",
@@ -46,6 +50,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@nestjs/cli": "^12.0.0",
     "@nestjs/mau": "^0.2.6",
     "@nestjs/schematics": "^12.0.0",
@@ -55,7 +60,12 @@
     "@types/node": "^24.0.0",
     "@types/supertest": "^7.0.0",
     "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "globals": "^17.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "oxlint": "^1.58.0",
     "oxlint-tsgolint": "^7.0.2001",
     "prettier": "^3.4.2",
@@ -64,8 +74,18 @@
     "supertest": "^7.0.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^6.0.2",
+    "typescript-eslint": "^8.72.1",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.1.2",
     "webpack-node-externals": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,css,scss}": [
+      "prettier --write"
+    ]
   }
 }

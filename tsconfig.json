@@ -29,9 +29,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/jobber/tsconfig.app.json"
-    },
-    {
       "path": "./apps/jobber-auth/tsconfig.app.json"
     },
     {

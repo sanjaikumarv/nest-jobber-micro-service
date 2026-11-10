@@ -40,9 +40,7 @@ export class UserDbService {
     return await (tx ?? this.prisma).user.update(payload);
   }
 
-  async count<T extends Prisma.UserCountArgs>(
-    query: Prisma.SelectSubset<T, Prisma.UserCountArgs>,
-  ) {
+  async count<T extends Prisma.UserCountArgs>(query: Prisma.SelectSubset<T, Prisma.UserCountArgs>) {
     return await this.prisma.user.count(query);
   }
   // Update user
