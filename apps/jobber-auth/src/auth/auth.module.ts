@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthResolver } from './auth.resolver.js';
-import { AuthService } from './auth.service.js';
+import { AuthResolver } from './auth.resolver';
+import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from '../users/users.module.js';
+import { UsersModule } from '../users/users.module';
+import { JwtStrategy } from './strategies/jwt-strategy';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { UsersModule } from '../users/users.module.js';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthResolver, AuthService],
+  providers: [AuthResolver, AuthService, JwtStrategy],
 })
 export class AuthModule {}
