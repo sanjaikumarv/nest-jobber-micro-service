@@ -23,7 +23,8 @@
       "@app/libs/nestjs": ["./libs/libs/nestjs/src/index.ts"],
       "@app/libs/nestjs/*": ["./libs/libs/nestjs/src/*"],
       "@app/nestjs": ["./libs/nestjs/src/index.ts"],
-      "@app/nestjs/*": ["./libs/nestjs/src/*"]
+      "@app/nestjs/*": ["./libs/nestjs/src/*"],
+      "@proto/types/*": ["./types/proto/*.ts"]
     }
   },
   "files": [],

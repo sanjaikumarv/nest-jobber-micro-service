@@ -24,16 +24,16 @@ export interface User {
 export const AUTH_PACKAGE_NAME = 'auth';
 
 export interface AuthServiceClient {
-  authService(request: AuthenticateRequest): Observable<User>;
+  authenticate(request: AuthenticateRequest): Observable<User>;
 }
 
 export interface AuthServiceController {
-  authService(request: AuthenticateRequest): Promise<User> | Observable<User> | User;
+  authenticate(request: AuthenticateRequest): Promise<User> | Observable<User> | User;
 }
 
 export function AuthServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['authService'];
+    const grpcMethods: string[] = ['authenticate'];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod('AuthService', method)(constructor.prototype[method], method, descriptor);

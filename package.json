@@ -28,7 +28,10 @@
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
     "prepare": "husky",
-    "proto:generate": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_out=./types ./proto/*.proto  --ts_proto_opt=nestJs=true"
+    "proto:generate": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_out=./types ./proto/*.proto  --ts_proto_opt=nestJs=true",
+    "dev": "concurrently \"nest start jobber-auth --watch\" \"nest start jobber-jobs --watch\"",
+    "dev:auth": "pnpm start:dev jobber-auth",
+    "dev:jobs": "pnpm start:dev jobber-jobs"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",
@@ -73,6 +76,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "^7.0.0",
     "@vitest/coverage-v8": "^4.1.2",
+    "concurrently": "^10.0.7",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
