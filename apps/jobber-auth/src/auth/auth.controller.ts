@@ -1,17 +1,24 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import {
-  AuthenticateRequest,
-  AuthServiceController,
   AuthServiceControllerMethods,
-  User,
+  type AuthenticateRequest,
+  type AuthServiceController,
+  type User,
 } from '@proto/types/auth';
+import { UsersService } from '../users/users.service';
+import { TokenPayload } from './dto/token-payload.interface';
 
 @Controller()
 @AuthServiceControllerMethods()
 export class AuthController implements AuthServiceController {
-  authenticate(request: AuthenticateRequest): Promise<User> | Observable<User> | User {
-    return {} as User;
+  constructor(private readonly userService: UsersService) {}
+  @UseGuards(JwtAuthGuard)
+  authenticate(
+    request: AuthenticateRequest & { user: TokenPayload },
+  ): Promise<User> | Observable<User> | User {
+    return this.userService.getUser({ id: request.user.userId });
   }
 }
