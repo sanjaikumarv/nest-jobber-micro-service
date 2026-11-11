@@ -8,11 +8,15 @@ import { AuthModule } from './auth/auth.module';
 import { Request, Response } from 'express';
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['apps/jobber-auth/.env', '.env'],
+    }),
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
+      playground: true,
       context: ({ req, res }: { req: Request; res: Response }) => ({ req, res }),
     }),
     UsersModule,

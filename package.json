@@ -16,7 +16,7 @@
     "migrate:all": "pnpm prisma:migrate:auth",
     "generate:all": "pnpm generate:auth:prisma",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/apps/jobber-auth/main",
+    "start:prod": "node dist/apps/jobber/main",
     "lint": "eslint \"{apps,libs}/**/*.ts\"",
     "lint:fix": "eslint \"{apps,libs}/**/*.ts\" --fix",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",

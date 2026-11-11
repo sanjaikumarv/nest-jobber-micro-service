@@ -19,6 +19,15 @@
         "tsConfigPath": "apps/jobber-auth/tsconfig.app.json"
       }
     },
+    "jobber-jobs": {
+      "type": "application",
+      "root": "apps/jobber-jobs",
+      "entryFile": "main",
+      "sourceRoot": "apps/jobber-jobs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/jobber-jobs/tsconfig.app.json"
+      }
+    },
     "libs/nestjs": {
       "type": "library",
       "root": "libs/libs/nestjs",

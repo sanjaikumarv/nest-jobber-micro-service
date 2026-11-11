@@ -32,6 +32,12 @@
       "path": "./apps/jobber-auth/tsconfig.app.json"
     },
     {
+      "path": "./apps/jobber/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/jobber-jobs/tsconfig.app.json"
+    },
+    {
       "path": "./tsconfig.spec.json"
     }
   ]
