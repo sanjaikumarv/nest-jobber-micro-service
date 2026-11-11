@@ -1,8 +1,15 @@
 import { NestFactory } from '@nestjs/core';
-import { JobberJobsModule } from './jobber-jobs.module.js';
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(JobberJobsModule);
-  await app.listen(process.env.port ?? 3000);
+  const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.use(cookieParser());
+  const port = app.get(ConfigService).getOrThrow<number>('PORT');
+  await app.listen(port);
 }
 await bootstrap();
