@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/nestjs/tsconfig.lib.json"
       }
+    },
+    "pulsar": {
+      "type": "library",
+      "root": "libs/pulsar",
+      "entryFile": "index",
+      "sourceRoot": "libs/pulsar/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/pulsar/tsconfig.lib.json"
+      }
     }
   }
 }

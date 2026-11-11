@@ -3,3 +3,4 @@ allowBuilds:
   '@prisma/engines': true
   prisma: true
   protobufjs: set this to true or false
+  pulsar-client: set this to true or false

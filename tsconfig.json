@@ -24,6 +24,8 @@
       "@app/libs/nestjs/*": ["./libs/libs/nestjs/src/*"],
       "@app/nestjs": ["./libs/nestjs/src/index.ts"],
       "@app/nestjs/*": ["./libs/nestjs/src/*"],
+      "@app/pulsar": ["./libs/pulsar/src/index.ts"],
+      "@app/pulsar/*": ["./libs/pulsar/src/*"],
       "@proto/types/*": ["./types/proto/*.ts"]
     }
   },
