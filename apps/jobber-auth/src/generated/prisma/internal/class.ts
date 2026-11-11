@@ -11,7 +11,7 @@
  */
 
 import * as runtime from '@prisma/client/runtime/client';
-import type * as Prisma from './prismaNamespace.js';
+import type * as Prisma from './prismaNamespace';
 
 const config: runtime.GetPrismaClientConfig = {
   previewFeatures: [],
@@ -88,9 +88,7 @@ export interface PrismaClientConstructor {
   new <
     Options extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
     LogOpts extends LogOptions<Options> = LogOptions<Options>,
-    OmitOpts extends Prisma.PrismaClientOptions['omit'] = Options extends {
-      omit: infer U;
-    }
+    OmitOpts extends Prisma.PrismaClientOptions['omit'] = Options extends { omit: infer U }
       ? U
       : Prisma.PrismaClientOptions['omit'],
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,

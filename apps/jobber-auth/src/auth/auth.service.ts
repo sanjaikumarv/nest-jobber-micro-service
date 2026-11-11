@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { LoginInput } from './dto/login.input';
 import { Response } from 'express';
 import { UsersService } from '../users/users.service';
@@ -6,6 +6,7 @@ import { compare } from 'bcryptjs';
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './dto/token-payload.interface';
 import { JwtService } from '@nestjs/jwt';
+import { Prisma } from '../generated/prisma/client';
 @Injectable()
 export class AuthService {
   constructor(
@@ -33,16 +34,25 @@ export class AuthService {
   }
   private async verifyUser(email: string, password: string) {
     try {
-      const user = await this.userService.getUser({
-        email,
-      });
-      const authenticated = await compare(password, user.password);
-      if (!authenticated) {
-        throw new UnauthorizedException();
+      const user = await this.userService.getUser({ email });
+
+      if (!user) {
+        throw new UnauthorizedException('Invalid credentials');
       }
+
+      // Verify password here
+
       return user;
     } catch (error) {
-      throw new UnauthorizedException(`User creds not valid : ${error}`);
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        console.error('Prisma Error Code:', error.code);
+        console.error('Prisma Error Message:', error.message);
+        console.error('Prisma Error Meta:', error.meta);
+      } else {
+        console.error('Unknown Error:', error);
+      }
+
+      throw error;
     }
   }
 }

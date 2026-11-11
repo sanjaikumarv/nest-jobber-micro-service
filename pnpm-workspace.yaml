@@ -2,5 +2,5 @@ allowBuilds:
   '@apollo/protobufjs': true
   '@prisma/engines': true
   prisma: true
-  protobufjs: set this to true or false
-  pulsar-client: set this to true or false
+  protobufjs: true
+  pulsar-client: true

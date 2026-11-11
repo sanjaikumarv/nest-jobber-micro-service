@@ -20,7 +20,7 @@ export class JobService implements OnModuleInit {
     if (!job) {
       throw new BadRequestException('Job not found');
     }
-    await (job.discoveredClass.instance as AbstractJob).execute();
+    await (job.discoveredClass.instance as AbstractJob).execute({}, job.meta.name);
     return job.meta;
   }
 }
