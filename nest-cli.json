@@ -19,6 +19,15 @@
         "tsConfigPath": "apps/jobber-auth/tsconfig.app.json"
       }
     },
+    "jobber-executer": {
+      "type": "application",
+      "root": "apps/jobber-executer",
+      "entryFile": "main",
+      "sourceRoot": "apps/jobber-executer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/jobber-executer/tsconfig.app.json"
+      }
+    },
     "jobber-jobs": {
       "type": "application",
       "root": "apps/jobber-jobs",

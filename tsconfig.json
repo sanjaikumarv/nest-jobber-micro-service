@@ -41,6 +41,9 @@
       "path": "./apps/jobber-jobs/tsconfig.app.json"
     },
     {
+      "path": "./apps/jobber-executer/tsconfig.app.json"
+    },
+    {
       "path": "./tsconfig.spec.json"
     }
   ]

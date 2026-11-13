@@ -6,8 +6,10 @@ services:
     environment:
       POSTGRES_PASSWORD: example
   pulsar:
-    image: apachepulsar/pulsar
-    command: >
-      /pulsar/bin/pulsar standalone
+    image: apachepulsar/pulsar:latest
+    command: bin/pulsar standalone
+    environment:
+      PULSAR_MEM: '-Xms512m -Xmx512m -XX:MaxDirectMemorySize=512m'
     ports:
-      - 6650:6650
+      - '6650:6650'
+      - '8080:8080'
